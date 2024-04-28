@@ -46,47 +46,56 @@ function App() {
 
   return (
     <div className="container">
-      <h1>The Royal Bank of Flatiron</h1>
-      <div className="search-bar">
-        <input type="text" placeholder="Search transactions..." value={searched} onChange={(e) => setSearched(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && searchTransaction(e, searched)} />
-      </div>
-      <div className="add-transaction-form">
-        <form onSubmit={handleSubmit}>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} placeholder="YYYY-MM-DD" required />  
-          <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
-          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" required />
-          <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} step="0.01" placeholder="Amount" required />
-          <input type="submit" value="Add Transaction" />
-        </form>
-      </div>
+  <h1>The Royal Bank of Flatiron</h1>
+  
+  {/* Search Bar */}
+  <div className="search-bar">
+    <input type="text" placeholder="Search transactions..." value={searched} onChange={(e) => setSearched(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && searchTransaction(e, searched)} />
+  </div>
+  
+  {/* Add Transaction Form Section */}
+  <div className="add-transaction-form">
+    <form onSubmit={handleSubmit}>
+      <input type="date" value={date} onChange={(e) => setDate(e.target.value)} placeholder="YYYY-MM-DD" required />  
+      <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
+      <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" required />
+      <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} step="0.01" placeholder="Amount" required />
+      <input type="submit" value="Add Transaction" />
+    </form>
+  </div>
 
-      <table className="transaction-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Trans.length > 0 ? (
-            Trans.map((transaction, index) => (
-              <tr key={index}>
-                <td>{transaction.date}</td>
-                <td>{transaction.description}</td>
-                <td>{transaction.category}</td>
-                <td>{transaction.amount}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="4">No records found</td>
+  {/* Transaction Table Section */}
+  <div>
+    <table className="transaction-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Trans.length > 0 ? (
+          Trans.map((transaction, index) => (
+            <tr key={index}>
+              <td>{transaction.date}</td>
+              <td>{transaction.description}</td>
+              <td>{transaction.category}</td>
+              <td>{transaction.amount}</td>
             </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="4">No records found</td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
   );
 }
 

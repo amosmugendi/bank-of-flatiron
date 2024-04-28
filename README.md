@@ -21,7 +21,7 @@ Git, React, node
 ## Installation Instruction
 Clone this repository using;
 
-⁠ bash
+⁠ ```bash
 git clone git@github.com:amosmugendi/bank-of-flatiron.git
 
 use `npm install` 

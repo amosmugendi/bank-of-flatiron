@@ -12,6 +12,8 @@ body {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Ensure elements stack vertically */
 }
 
 h1 {
@@ -19,15 +21,17 @@ h1 {
     margin-bottom: 20px;
     background-color: rgb(57, 56, 150);
     color: white;
+    padding: 10px 0; /* Add padding to top and bottom */
+    border-radius: 5px 5px 0 0; /* Rounded corners only on top */
 }
 
 .transaction-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
-.transaction-table th, .transaction-table td {
+.transaction-table th,
+.transaction-table td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -38,38 +42,42 @@ h1 {
 }
 
 .search-bar {
-margin-bottom: 20px;
-position: relative;
+    margin-bottom: 20px;
 }
 
 .search-bar input[type="text"] {
-width: calc(100% - 40px);
-padding: 8px 30px 8px 10px; /* Adjust padding to align text properly */
-border: 1px solid #ddd;
-border-radius: 3px;
-box-sizing: border-box;
+    width: calc(100% - 40px);
+    padding: 8px 30px 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
 }
 
 .search-bar input[type="text"]::placeholder {
-color: #999;
+    color: #999;
 }
-
 
 .add-transaction-form {
     display: flex;
+    align-items: flex-end; /* Align items at the bottom */
     flex-wrap: wrap;
     background-color: #f2f2f2;
-
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
+
 .add-transaction-form input[type="text"],
-.add-transaction-form input[type="number"] {
-    flex: 1;
+.add-transaction-form input[type="number"],
+.add-transaction-form input[type="date"] {
+    flex: 1; /* Each input takes equal space */
     margin-right: 10px;
     margin-bottom: 10px;
 }
 
 .add-transaction-form input[type="submit"] {
-    flex:0 0 100%;
+    flex: 1; /* Button takes full width */
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -78,7 +86,7 @@ color: #999;
     cursor: pointer;
 }
 
+
 .add-transaction-form input[type="submit"]:hover {
     background-color: #45a049;
-    flex: 0 0 100%;
 }

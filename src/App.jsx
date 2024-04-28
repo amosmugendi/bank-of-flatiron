@@ -1,10 +1,6 @@
-import React, { useState } from 'react'; // Import React
-import reactLogo from './assets/react.svg'; // Import reactLogo
-// import viteLogo from './vite.svg'; // Correct the path for viteLogo
-import './App.css'; // Import App.css
-import './Style.css'
-
-
+import React, { useState } from 'react';
+import './App.css';
+import './Style.css';
 
 function App() {
   const [Trans, setTrans] = useState([
@@ -17,7 +13,8 @@ function App() {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
-
+  const [searched, setSearched] = useState('');
+  
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -30,11 +27,28 @@ function App() {
     setAmount('');
   }
 
+  function searchTransaction(e, description) {
+    e.preventDefault();
+
+    const result = Trans.filter(transaction =>
+      transaction.description.toLowerCase().includes(description.toLowerCase())
+    );
+
+    if (result.length > 0) {
+      setTrans(result);
+    } else {
+      setTrans([]);
+      // Optionally set a state variable to display a message
+    }
+
+    setSearched('');
+  }
+
   return (
     <div className="container">
       <h1>The Royal Bank of Flatiron</h1>
       <div className="search-bar">
-        <input type="text" placeholder="Search transactions..." />
+        <input type="text" placeholder="Search transactions..." value={searched} onChange={(e) => setSearched(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && searchTransaction(e, searched)} />
       </div>
       <div className="add-transaction-form">
         <form onSubmit={handleSubmit}>
@@ -56,14 +70,20 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {Trans.map((transaction, index) => (
-            <tr key={index}>
-              <td>{transaction.date}</td>
-              <td>{transaction.description}</td>
-              <td>{transaction.category}</td>
-              <td>{transaction.amount}</td>
+          {Trans.length > 0 ? (
+            Trans.map((transaction, index) => (
+              <tr key={index}>
+                <td>{transaction.date}</td>
+                <td>{transaction.description}</td>
+                <td>{transaction.category}</td>
+                <td>{transaction.amount}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4">No records found</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
